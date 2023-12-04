@@ -1,6 +1,8 @@
 package com.bridgelabz.main;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 
 
@@ -33,6 +35,41 @@ class Address{
         }
     }
     
+	/*
+	 * @desc: to print the contacts of a particular city
+	 * @params:Object Contact
+	 * @return:none
+	 */
+    public void printSameCity(String cityContact) {
+
+    	List<Contact> sameCityContacts=contacts.stream()
+    			.filter(c -> c.getCity().equals(cityContact))
+    			.collect(Collectors.toList());
+    	if (sameCityContacts.isEmpty()) {
+            System.out.println("No contacts in the same city as provided contact.");
+        } else {
+            System.out.println("Contacts in the same city as provided contact:");
+            sameCityContacts.forEach(System.out::println);
+        }    
+    }
+    
+	/*
+	 * @desc: to print the contacts of a particular address
+	 * @params:Object Contact
+	 * @return:none
+	 */
+    public void printSameState(String stateToMatch) {
+
+    	List<Contact> sameCityContacts=contacts.stream()
+    			.filter(c -> c.getState().equals(stateToMatch))
+    			.collect(Collectors.toList());
+    	if (sameCityContacts.isEmpty()) {
+            System.out.println("No contacts in the same city as provided contact.");
+        } else {
+            System.out.println("Contacts in the same city as provided contact:");
+            sameCityContacts.forEach(System.out::println);
+        }    
+    }
     
 	/*
 	 * @desc: to display individual conatcts in  ArrayList

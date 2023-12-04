@@ -73,6 +73,30 @@ public class AddressBookMain {
 		        }
 
 		        address.display();
+		        // Print contacts from the same city
+		        System.out.print("Do you want to print contacts from the same city? (yes/no): ");
+		        String printSameCityOption = scanner.nextLine();
+
+		        if (printSameCityOption.equalsIgnoreCase("yes")) {
+		            System.out.print("Enter city to match: ");
+		            String cityToMatch = scanner.nextLine();
+
+		            
+		            address.printSameCity(cityToMatch);
+		        }
+                
+		        // Print contacts from the same state
+		        System.out.print("Do you want to print contacts from the same state? (yes/no): ");
+		        String printSameStateOption = scanner.nextLine();
+
+		        if (printSameStateOption.equalsIgnoreCase("yes")) {
+		            System.out.print("Enter city to match: ");
+		            String stateToMatch = scanner.nextLine();
+
+		            
+		            address.printSameState(stateToMatch);
+		        }
+		        
 		        scanner.close();
 	}
  
