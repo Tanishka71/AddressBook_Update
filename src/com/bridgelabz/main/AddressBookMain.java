@@ -109,7 +109,14 @@ public class AddressBookMain {
 		        String stateToView = scanner.nextLine();
 		        address.printPersonsByState(stateToView);
 
-		        
+		        // Additional functionality for printing count by city and state
+		        System.out.print("Enter a city to get the count of persons: ");
+		        String cityToCount = scanner.nextLine();
+		        address.printPersonsByCity(cityToCount);
+
+		        System.out.print("Enter a state to get the count of persons: ");
+		        String stateToCount = scanner.nextLine();
+		        address.printPersonsByState(stateToCount);
 		        scanner.close();
 	}
  
