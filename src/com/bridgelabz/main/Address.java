@@ -1,6 +1,8 @@
 package com.bridgelabz.main;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -11,13 +13,15 @@ import java.util.stream.Collectors;
 @methods:non-parameterized contstructor, display, addContact,findContact, editContact, addContact,deleteContact
 */
 class Address{
+    private List<Contact> contacts;
+    private Map<String, List<Contact>> cityDictionary;
+    private Map<String, List<Contact>> stateDictionary;
 
-    private ArrayList<Contact> contacts;
-
-    public Address(){
-        contacts = new ArrayList<Contact>();
+    public Address() {
+        contacts = new ArrayList<>();
+        cityDictionary = new HashMap<>();
+        stateDictionary = new HashMap<>();
     }
-    
 	/*
 	 * @desc: to add individual conatcts in  ArrayList
 	 * @params:Object Contact
@@ -26,6 +30,12 @@ class Address{
     public void addContact(Contact contact) {
         // Check for duplicates using Java Streams
         boolean isDuplicate = contacts.stream().anyMatch(c -> c.equals(contact));
+        
+        // Update city dictionary
+        cityDictionary.computeIfAbsent(contact.getCity(), k -> new ArrayList<>()).add(contact);
+
+        // Update state dictionary
+        stateDictionary.computeIfAbsent(contact.getState(), k -> new ArrayList<>()).add(contact);
 
         if (!isDuplicate) {
             contacts.add(contact);
@@ -35,9 +45,10 @@ class Address{
         }
     }
     
+    //<-------USE CASE 8------>
 	/*
 	 * @desc: to print the contacts of a particular city
-	 * @params:Object Contact
+	 * @params:String  Contact
 	 * @return:none
 	 */
     public void printSameCity(String cityContact) {
@@ -55,22 +66,55 @@ class Address{
     
 	/*
 	 * @desc: to print the contacts of a particular address
-	 * @params:Object Contact
+	 * @params:String Contact
 	 * @return:none
 	 */
     public void printSameState(String stateToMatch) {
+        List<Contact> sameStateContacts = contacts.stream()
+                .filter(c -> c.getState().equalsIgnoreCase(stateToMatch))
+                .collect(Collectors.toList());
 
-    	List<Contact> sameCityContacts=contacts.stream()
-    			.filter(c -> c.getState().equals(stateToMatch))
-    			.collect(Collectors.toList());
-    	if (sameCityContacts.isEmpty()) {
-            System.out.println("No contacts in the same city as provided contact.");
+        if (sameStateContacts.isEmpty()) {
+            System.out.println("No contacts in the same state as provided contact.");
         } else {
-            System.out.println("Contacts in the same city as provided contact:");
-            sameCityContacts.forEach(System.out::println);
-        }    
+            System.out.println("Contacts in the same state as provided contact:");
+            sameStateContacts.forEach(System.out::println);
+        }
     }
+
     
+    
+    
+    //<-------USE CASE 9------>
+	/*
+	 * @desc: to print the contacts of a particular CITY
+	 * @params:String Contact
+	 * @return:none
+	 */
+    public void printPersonsByCity(String city) {
+        List<Contact> personsInCity = cityDictionary.getOrDefault(city, new ArrayList<>());
+        if (personsInCity.isEmpty()) {
+            System.out.println("No persons found in the city: " + city);
+        } else {
+            System.out.println("Persons in the city: " + city);
+            personsInCity.forEach(System.out::println);
+        }
+    }
+	/*
+	 * @desc: to print the contacts of a particular STATE
+	 * @params:String Contact
+	 * @return:none
+	 */
+    public void printPersonsByState(String state) {
+        List<Contact> personsInState = stateDictionary.getOrDefault(state, new ArrayList<>());
+        if (personsInState.isEmpty()) {
+            System.out.println("No persons found in the state: " + state);
+        } else {
+            System.out.println("Persons in the state: " + state);
+            personsInState.forEach(System.out::println);
+        }
+    }
+
 	/*
 	 * @desc: to display individual conatcts in  ArrayList
 	 * @params:none
