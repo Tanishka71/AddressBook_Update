@@ -22,6 +22,9 @@ class Address{
         cityDictionary = new HashMap<>();
         stateDictionary = new HashMap<>();
     }
+    
+    
+    //<-------USE CASE 1----->
 	/*
 	 * @desc: to add individual conatcts in  ArrayList
 	 * @params:Object Contact
@@ -45,107 +48,8 @@ class Address{
         }
     }
     
-    //<-------USE CASE 8------>
-	/*
-	 * @desc: to print the contacts of a particular city
-	 * @params:String  Contact
-	 * @return:none
-	 */
-    public void printSameCity(String cityContact) {
-
-    	List<Contact> sameCityContacts=contacts.stream()
-    			.filter(c -> c.getCity().equals(cityContact))
-    			.collect(Collectors.toList());
-    	if (sameCityContacts.isEmpty()) {
-            System.out.println("No contacts in the same city as provided contact.");
-        } else {
-            System.out.println("Contacts in the same city as provided contact:");
-            sameCityContacts.forEach(System.out::println);
-        }    
-    }
     
-	/*
-	 * @desc: to print the contacts of a particular address
-	 * @params:String Contact
-	 * @return:none
-	 */
-    public void printSameState(String stateToMatch) {
-        List<Contact> sameStateContacts = contacts.stream()
-                .filter(c -> c.getState().equalsIgnoreCase(stateToMatch))
-                .collect(Collectors.toList());
-
-        if (sameStateContacts.isEmpty()) {
-            System.out.println("No contacts in the same state as provided contact.");
-        } else {
-            System.out.println("Contacts in the same state as provided contact:");
-            sameStateContacts.forEach(System.out::println);
-        }
-    }
-
-    
-    
-    
-    //<-------USE CASE 9------>
-	/*
-	 * @desc: to print the contacts of a particular CITY
-	 * @params:String Contact
-	 * @return:none
-	 */
-    public void printPersonsByCity(String city) {
-        List<Contact> personsInCity = cityDictionary.getOrDefault(city, new ArrayList<>());
-        if (personsInCity.isEmpty()) {
-            System.out.println("No persons found in the city: " + city);
-        } else {
-            System.out.println("Persons in the city: " + city);
-            personsInCity.forEach(System.out::println);
-        }
-    }
-	/*
-	 * @desc: to print the contacts of a particular STATE
-	 * @params:String Contact
-	 * @return:none
-	 */
-    public void printPersonsByState(String state) {
-        List<Contact> personsInState = stateDictionary.getOrDefault(state, new ArrayList<>());
-        if (personsInState.isEmpty()) {
-            System.out.println("No persons found in the state: " + state);
-        } else {
-            System.out.println("Persons in the state: " + state);
-            personsInState.forEach(System.out::println);
-        }
-    }
-
-	/*
-	 * @desc: to display individual conatcts in  ArrayList
-	 * @params:none
-	 * @return:none
-	 */
-    public void display() {
-        if(contacts.isEmpty()){
-            System.out.println("No contacts in the address book");
-        }else{
-            System.out.println("Address book updated\n");
-            for(Contact c : contacts){
-                System.out.println(c);
-                System.out.println();    
-        }
-        }  
-    }
-    
-	/*
-	 * @desc:Finds a contact in the address book by first name and last name.
-	 * @params:String
-	 * @return:Object
-	 */
-    public Contact findContactByName(String firstName, String lastName) {
-        for (Contact contact : contacts) {
-            if (contact.getFname().equalsIgnoreCase(firstName) && contact.getLname().equalsIgnoreCase(lastName)) {
-                return contact;
-            }
-        }
-        return null; // Contact not found
-    }
-   
+    //<-------USE CASE 3----->
 	/*
 	 * @desc:Edits an existing contact's information based on user input.
 	 * @params:Scanner
@@ -209,6 +113,7 @@ class Address{
     }
     
     
+    //<-------USE CASE 4----->
 	/*
 	 * @desc:Deletes a contact from the address book by first name and last name.
 	 * @params:Scanner
@@ -230,6 +135,116 @@ class Address{
             System.out.println("Contact not found. Deletion failed.");
         }
     }
+    
+    //<-------USE CASE 7------>
+	/*
+	 * @desc:Finds a contact in the address book by first name and last name.
+	 * @params:String
+	 * @return:Object
+	 */
+    public Contact findContactByName(String firstName, String lastName) {
+        for (Contact contact : contacts) {
+            if (contact.getFname().equalsIgnoreCase(firstName) && contact.getLname().equalsIgnoreCase(lastName)) {
+                return contact;
+            }
+        }
+        return null; // Contact not found
+    }
+   
+    
+    //<-------USE CASE 8------>
+   	/*
+   	 * @desc: to print the contacts of a particular city
+   	 * @params:String  Contact
+   	 * @return:none
+   	 */
+       public void printSameCity(String cityContact) {
+
+       	List<Contact> sameCityContacts=contacts.stream()
+       			.filter(c -> c.getCity().equals(cityContact))
+       			.collect(Collectors.toList());
+       	if (sameCityContacts.isEmpty()) {
+               System.out.println("No contacts in the same city as provided contact.");
+           } else {
+               System.out.println("Contacts in the same city as provided contact:");
+               sameCityContacts.forEach(System.out::println);
+           }    
+       }
+       
+   	/*
+   	 * @desc: to print the contacts of a particular address
+   	 * @params:String Contact
+   	 * @return:none
+   	 */
+       public void printSameState(String stateToMatch) {
+           List<Contact> sameStateContacts = contacts.stream()
+                   .filter(c -> c.getState().equalsIgnoreCase(stateToMatch))
+                   .collect(Collectors.toList());
+
+           if (sameStateContacts.isEmpty()) {
+               System.out.println("No contacts in the same state as provided contact.");
+           } else {
+               System.out.println("Contacts in the same state as provided contact:");
+               sameStateContacts.forEach(System.out::println);
+           }
+       }
+
+       
+       
+       
+       //<-------USE CASE 9------>
+   	/*
+   	 * @desc: to print the contacts of a particular CITY
+   	 * @params:String Contact
+   	 * @return:none
+   	 */
+       public void printPersonsByCity(String city) {
+           List<Contact> personsInCity = cityDictionary.getOrDefault(city, new ArrayList<>());
+           long count = personsInCity.stream().count();
+
+           if (count > 0) {
+               System.out.println("Number of persons in the city '" + city + "': " + count);
+               personsInCity.forEach(System.out::println);
+           } else {
+               System.out.println("No persons found in the city: " + city);
+           }
+       }
+   	/*
+   	 * @desc: to print the contacts of a particular STATE
+   	 * @params:String Contact
+   	 * @return:none
+   	 */
+       public void printPersonsByState(String state) {
+           List<Contact> personsInState = stateDictionary.getOrDefault(state, new ArrayList<>());
+           long count = personsInState.stream().count();
+
+           if (count > 0) {
+               System.out.println("Number of persons in the state '" + state + "': " + count);
+               personsInState.forEach(System.out::println);
+           } else {
+               System.out.println("No persons found in the state: " + state);
+           }
+       }
+       
+       
+   	/*
+   	 * @desc: to display individual conatcts in  ArrayList
+   	 * @params:none
+   	 * @return:none
+   	 */
+       public void display() {
+           if(contacts.isEmpty()){
+               System.out.println("No contacts in the address book");
+           }else{
+               System.out.println("Address book updated\n");
+               for(Contact c : contacts){
+                   System.out.println(c);
+                   System.out.println();    
+           }
+           }  
+       }
+       
+      
 }
 
 
