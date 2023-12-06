@@ -256,7 +256,40 @@ class Address{
     	   display();
        }
 
-           
+
+     //<---------------USE CASE 12-------------------->
+     /*
+      * @desc: to print the contacts in sorted manner for CITY
+      * @params:none
+      * @return:none
+      */
+     public void printSortedByCity() {
+     	   contacts = contacts.stream().sorted(Comparator.comparing(Contact::getCity)).collect(Collectors.toList());
+     	   System.out.println("CONTACTS IN SORTED ORDER BY CITY ARE: ");
+     	   display();
+     }
+
+     	/*
+     	 * @desc: to print the contacts in sorted manner BY STATE
+     	 * @params:none
+     	 * @return:none
+     	 */
+        public void printSortedByState() {
+     	   contacts = contacts.stream().sorted(Comparator.comparing(Contact::getState)).collect(Collectors.toList());
+     	   System.out.println("CONTACTS IN SORTED ORDER BY STATE ARE: ");
+     	   display();
+        }
+       
+     	/*
+      	 * @desc: to print the contacts in sorted manner BY ZIP
+      	 * @params:none
+      	 * @return:none
+      	 */
+          public void printSortedByZip() {
+       	   contacts = contacts.stream().sorted(Comparator.comparing(Contact::getZip)).collect(Collectors.toList());
+       	   System.out.println("CONTACTS IN SORTED ORDER BY STATE ARE: ");
+       	   display();
+          }    
 }
 
 

@@ -73,7 +73,7 @@ class Contact {
 	 * @return:String
 	 */
     public String getState() {
-        return zip;
+        return state;
     }
 
 	/*

@@ -96,7 +96,24 @@ public class AddressBookMain {
 		        }
 		        
 
-		        
+
+				System.out.print(
+						"Do you want to print contacts in sorted manner using which parameter? (NAME, CITY ,STATE ,ZIP): ");
+				String sortOption = scanner.nextLine();
+
+				if (sortOption.equalsIgnoreCase("name")) {
+					address.printSortedByName();
+				} else if (sortOption.equalsIgnoreCase("city")) {
+					address.printSortedByCity();
+				}
+
+				else if (sortOption.equalsIgnoreCase("state")) {
+					address.printSortedByState();
+				}
+
+				else if (sortOption.equalsIgnoreCase("ZIP")) {
+					address.printSortedByZip();
+				}
 //	
 //		        System.out.print("Enter city to view persons: ");
 //		        String cityToView = scanner.nextLine();
@@ -116,7 +133,7 @@ public class AddressBookMain {
 //		        String stateToCount = scanner.nextLine();
 //		        address.printPersonsByState(stateToCount);
 		        
-		        address.printSortedByName();
+		   
 		        scanner.close();
 	}
  
