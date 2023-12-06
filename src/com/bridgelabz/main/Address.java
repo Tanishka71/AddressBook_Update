@@ -1,5 +1,7 @@
 package com.bridgelabz.main;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -192,7 +194,7 @@ class Address{
        
        
        
-       //<-------USE CASE 9------>
+       //<-----------------USE CASE 9------------------->
    	/*
    	 * @desc: to print the contacts of a particular CITY
    	 * @params:String Contact
@@ -236,15 +238,25 @@ class Address{
            if(contacts.isEmpty()){
                System.out.println("No contacts in the address book");
            }else{
-               System.out.println("Address book updated\n");
-               for(Contact c : contacts){
-                   System.out.println(c);
-                   System.out.println();    
+              contacts.forEach(System.out::println);   
            }
-           }  
+         
        }
        
-      
+       
+       //<---------------USE CASE 11-------------------->
+   	/*
+   	 * @desc: to print the contacts in sorted manner for first name
+   	 * @params:none
+   	 * @return:none
+   	 */
+       public void printSortedByName() {
+    	   contacts = contacts.stream().sorted(Comparator.comparing(Contact::getFname)).collect(Collectors.toList());
+    	   System.out.println("CONTACTS IN SORTED ORDER BY NAME ARE: ");
+    	   display();
+       }
+
+           
 }
 
 

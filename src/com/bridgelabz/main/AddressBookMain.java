@@ -92,31 +92,31 @@ public class AddressBookMain {
 		        if (printSameStateOption.equalsIgnoreCase("yes")) {
 		            System.out.print("Enter state to match: ");
 		            String stateToMatch = scanner.nextLine();
-
-		            
 		            address.printSameState(stateToMatch);
 		        }
 		        
+
 		        
-		        //list of person in same city or state
-	
-		        System.out.print("Enter city to view persons: ");
-		        String cityToView = scanner.nextLine();
-		        address.printPersonsByCity(cityToView);
-
-		     
-		        System.out.print("Enter state to view persons: ");
-		        String stateToView = scanner.nextLine();
-		        address.printPersonsByState(stateToView);
-
-		        // Additional functionality for printing count by city and state
-		        System.out.print("Enter a city to get the count of persons: ");
-		        String cityToCount = scanner.nextLine();
-		        address.printPersonsByCity(cityToCount);
-
-		        System.out.print("Enter a state to get the count of persons: ");
-		        String stateToCount = scanner.nextLine();
-		        address.printPersonsByState(stateToCount);
+//	
+//		        System.out.print("Enter city to view persons: ");
+//		        String cityToView = scanner.nextLine();
+//		        address.printPersonsByCity(cityToView);
+//
+//		     
+//		        System.out.print("Enter state to view persons: ");
+//		        String stateToView = scanner.nextLine();
+//		        address.printPersonsByState(stateToView);
+//
+//		        // Additional functionality for printing count by city and state
+//		        System.out.print("Enter a city to get the count of persons: ");
+//		        String cityToCount = scanner.nextLine();
+//		        address.printPersonsByCity(cityToCount);
+//
+//		        System.out.print("Enter a state to get the count of persons: ");
+//		        String stateToCount = scanner.nextLine();
+//		        address.printPersonsByState(stateToCount);
+		        
+		        address.printSortedByName();
 		        scanner.close();
 	}
  
